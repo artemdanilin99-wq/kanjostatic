@@ -1,18 +1,17 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
-import { View, Product, CartItem, User } from './types';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Catalog from './components/Catalog';
-import { Cart } from './components/Cart';
-import Footer from './components/Footer';
-import ProductModal from './components/ProductModal';
-import Contacts from './components/Contacts';
-import Tracking from './components/Tracking';
-import AuthModal from './components/AuthModal';
-import Dashboard from './components/Dashboard';
-import { MockBackend } from './services/backend';
-import { BellRing, Zap } from 'lucide-react';
+import { View, Product, CartItem, User } from './types.ts';
+import Navbar from './components/Navbar.tsx';
+import Hero from './components/Hero.tsx';
+import Catalog from './components/Catalog.tsx';
+import { Cart } from './components/Cart.tsx';
+import Footer from './components/Footer.tsx';
+import ProductModal from './components/ProductModal.tsx';
+import Contacts from './components/Contacts.tsx';
+import Tracking from './components/Tracking.tsx';
+import AuthModal from './components/AuthModal.tsx';
+import Dashboard from './components/Dashboard.tsx';
+import { MockBackend } from './services/backend.ts';
+import { Zap } from 'lucide-react';
 
 const App: React.FC = () => {
   const [currentView, setCurrentView] = useState<View>('home');
@@ -31,11 +30,9 @@ const App: React.FC = () => {
     }
   }, []);
 
-  // АВТОНОМНАЯ СИНХРОНИЗАЦИЯ С TG
   useEffect(() => {
     const syncInterval = setInterval(() => {
       MockBackend.syncOrdersWithTelegram((orderId, status) => {
-        // Показываем уведомление на сайте, когда статус меняется из TG
         setToast({ msg: `ЗАКАЗ ${orderId}: СТАТУС ОБНОВЛЕН ДО ${status.toUpperCase()}`, visible: true });
         setTimeout(() => setToast(prev => ({...prev, visible: false})), 5000);
       });
@@ -90,7 +87,6 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen relative flex flex-col bg-[#0a0a0c]">
-      {/* Toast Notification */}
       <div className={`fixed top-24 right-6 z-[100] transition-all duration-500 transform ${toast.visible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0 pointer-events-none'}`}>
         <div className="bg-cyan-400 text-black px-6 py-4 shadow-[0_0_30px_rgba(6,182,212,0.4)] flex items-center gap-4 border border-white/20">
           <Zap size={20} className="animate-pulse" />
