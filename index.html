@@ -7,10 +7,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
+      :root {
+        --cyan: #06b6d4;
+        --bg: #0a0a0c;
+      }
       body {
         margin: 0;
         padding: 0;
-        background-color: #0a0a0c;
+        background-color: var(--bg);
         color: white;
         font-family: 'Inter', sans-serif;
         overflow-x: hidden;
@@ -23,25 +27,39 @@
       .scanlines {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
-        background-size: 100% 2px, 3px 100%;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+        background-size: 100% 3px, 3px 100%;
         pointer-events: none;
-        z-index: 50;
+        z-index: 100;
+        opacity: 0.4;
       }
 
       .noise-bg {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
         background-image: url('https://grainy-gradients.vercel.app/noise.svg');
-        opacity: 0.05;
+        opacity: 0.03;
         pointer-events: none;
-        z-index: 49;
+        z-index: 99;
       }
 
-      ::-webkit-scrollbar { width: 6px; }
+      .glitch-hover:hover {
+        animation: glitch-anim 0.2s infinite;
+      }
+
+      @keyframes glitch-anim {
+        0% { transform: translate(0); }
+        20% { transform: translate(-2px, 2px); }
+        40% { transform: translate(-2px, -2px); }
+        60% { transform: translate(2px, 2px); }
+        80% { transform: translate(2px, -2px); }
+        100% { transform: translate(0); }
+      }
+
+      ::-webkit-scrollbar { width: 4px; }
       ::-webkit-scrollbar-track { background: #0a0a0c; }
-      ::-webkit-scrollbar-thumb { background: #222; border-radius: 0; }
-      ::-webkit-scrollbar-thumb:hover { background: #cyan; }
+      ::-webkit-scrollbar-thumb { background: #222; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
     </style>
   <script type="importmap">
 {

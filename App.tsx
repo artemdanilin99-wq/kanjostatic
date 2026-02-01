@@ -3,7 +3,7 @@ import { View, Product, CartItem, User } from './types';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Catalog from './components/Catalog';
-import { Cart } from './components/Cart';
+import Cart from './components/Cart';
 import Footer from './components/Footer';
 import ProductModal from './components/ProductModal';
 import Contacts from './components/Contacts';
@@ -28,17 +28,6 @@ const App: React.FC = () => {
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
     }
-  }, []);
-
-  useEffect(() => {
-    const syncInterval = setInterval(() => {
-      MockBackend.syncOrdersWithTelegram((orderId, status) => {
-        setToast({ msg: `ЗАКАЗ ${orderId}: СТАТУС ОБНОВЛЕН ДО ${status.toUpperCase()}`, visible: true });
-        setTimeout(() => setToast(prev => ({...prev, visible: false})), 5000);
-      });
-    }, 5000);
-
-    return () => clearInterval(syncInterval);
   }, []);
 
   const handleLogin = (user: User) => {
@@ -69,6 +58,7 @@ const App: React.FC = () => {
       }
       return [...prev, { ...product, quantity: 1, selectedSize: size, selectedColor: color }];
     });
+    setIsCartOpen(true);
   }, []);
 
   const removeFromCart = (id: string, size: string, color: string) => {
