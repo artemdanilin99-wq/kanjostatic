@@ -1,16 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { View, Product, CartItem, User } from './types';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Catalog from './components/Catalog';
-import { Cart } from './components/Cart';
-import Footer from './components/Footer';
-import ProductModal from './components/ProductModal';
-import Contacts from './components/Contacts';
-import Tracking from './components/Tracking';
-import AuthModal from './components/AuthModal';
-import Dashboard from './components/Dashboard';
-import { MockBackend } from './services/backend';
+import Navbar from './components/Navbar.tsx';
+import Hero from './components/Hero.tsx';
+import Catalog from './components/Catalog.tsx';
+import { Cart } from './components/Cart.tsx';
+import Footer from './components/Footer.tsx';
+import ProductModal from './components/ProductModal.tsx';
+import Contacts from './components/Contacts.tsx';
+import Tracking from './components/Tracking.tsx';
+import AuthModal from './components/AuthModal.tsx';
+import Dashboard from './components/Dashboard.tsx';
+import { MockBackend } from './services/backend.ts';
 import { Zap } from 'lucide-react';
 
 const App: React.FC = () => {
